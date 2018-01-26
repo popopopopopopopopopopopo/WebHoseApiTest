@@ -1,0 +1,31 @@
+﻿<prismMvvm:SessionStateAwarePage x:Class="WebHoseApiTestApp.Views.MainPage"
+                                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                                 xmlns:local="using:WebHoseApiTestApp.Views"
+                                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                                 xmlns:prismMvvm="using:Prism.Windows.Mvvm"
+                                 xmlns:telerikGrid="using:Telerik.UI.Xaml.Controls.Grid"
+                                 prismMvvm:ViewModelLocator.AutoWireViewModel="True"
+                                 mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"></RowDefinition>
+            <RowDefinition Height="500"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Style="{ThemeResource HeaderTextBlockStyle}"
+                   Text="{Binding DisplayText}" />
+        <telerikGrid:RadDataGrid Grid.Row="1" x:Name="myDataGrid"
+                                 ItemsSource="{Binding CurrentPosts}"
+                                 SelectedItem="{Binding SelectedPost}"/>
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <Button Content="Newsを取得する" Command="{Binding GetNewsFromWebHoseCommand}"></Button>
+            <Button Content="SlackにPostする" Command="{Binding GetNewsFromWebHoseCommand}"></Button>
+            <Button Content="読み上げる" Command="{Binding SpeakSelectedPostCommand}"></Button>
+        </StackPanel>
+    </Grid>
+</prismMvvm:SessionStateAwarePage>
